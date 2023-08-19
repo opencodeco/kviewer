@@ -50,4 +50,5 @@ func printHelp() {
 	fmt.Println("")
 	fmt.Println("Comandos disponíveis:")
 	fmt.Println("consume <meu-topico> - Consumir mensagens de um tópico específico.")
+	fmt.Println("produce <meu-topico> <mensagem>- Consumir mensagens de um tópico específico.")
 }
