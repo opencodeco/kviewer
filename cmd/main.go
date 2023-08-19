@@ -29,6 +29,16 @@ func main() {
 		if err != nil {
 			fmt.Println("Erro ao consumir tópico:", err)
 		}
+	case "produce":
+		if len(os.Args) < 4 {
+			fmt.Println("Por favor, especifique a mensagem a ser enviada.")
+			return
+		}
+		message := os.Args[3]
+		err := kviewer.Produce(topic, message)
+		if err != nil {
+			fmt.Println("Erro ao produzir mensagem:", err)
+		}
 	default:
 		fmt.Println("Ação desconhecida")
 	}

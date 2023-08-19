@@ -5,17 +5,10 @@ import (
 	"fmt"
 
 	"github.com/IBM/sarama"
-	"github.com/spf13/viper"
 )
 
 func Consume(topic string, maxMsgs int) error {
-	bootstrapServers := viper.GetString("bootstrap.servers")
-
-	config := sarama.NewConfig()
-	config.Consumer.Return.Errors = true
-
-	brokers := []string{bootstrapServers}
-	client, err := sarama.NewConsumer(brokers, config)
+	client, err := GetKafkaConsumer()
 	if err != nil {
 		return fmt.Errorf("failed to create consumer: %s", err)
 	}
@@ -27,7 +20,7 @@ func Consume(topic string, maxMsgs int) error {
 	}
 
 	msgCount := 0
-	unlimited := (maxMsgs == 0) // Se maxMsgs é 0, então consuma indefinidamente
+	unlimited := (maxMsgs == 0)
 
 	for _, partition := range partitions {
 		consumer, err := client.ConsumePartition(topic, partition, sarama.OffsetOldest)
