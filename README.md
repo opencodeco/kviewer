@@ -12,7 +12,13 @@ To consume messages from a topic:
 If the number of messages isn't specified, the kviewer will consume indefinitely until interrupted.
 
 # Configuration
-For instance, you can define the bootstrap server address using the environment variable `KVIEWER_BOOTSTRAP_SERVERS` with a default fallback to `localhost:29092`.
+To configure the Kafka connection, create a config.yaml file in the project's root directory. The file should contain the following configuration:
+
+```yaml
+kafka:
+  host: "your_kafka_host"
+  port: "your_kafka_port"
+```
 
 # How to Contribute
 - Fork the project on GitHub.
